@@ -430,6 +430,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 268023488001910557, guid: 90ad26d048d6def48b75d7dd550b6096, type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1089437883420030271, guid: 90ad26d048d6def48b75d7dd550b6096, type: 3}
       propertyPath: promptText
       value: 
