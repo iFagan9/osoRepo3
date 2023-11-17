@@ -1,7 +1,6 @@
-using System.Runtime;
 using UnityEditor;
 
-[CustomEditor(typeof(InteractableEditor), true)] 
+[CustomEditor(typeof(Interactable), true)] 
 
 
 public class InteractableEditor : Editor
@@ -9,7 +8,18 @@ public class InteractableEditor : Editor
     public override void OnInspectorGUI()
     {
         Interactable interactable = (Interactable)target;
-            if(interactable.useEvents)
+        //target is inherited from editor (currently looking at I think)
+        if ((target.GetType()==typeof(EventOnlyInteractable)))
+        {
+            interactable.promptMessage = EditorGUILayout.TextField("Prompt Message", interactable.promptMessage);
+            EditorGUILayout.HelpBox("EventOnlyInteract can ONLY use UnityEvents.", MessageType.Info);
+            if(interactable.GetComponent<InteractionEvent>()==null)
+            {
+                interactable.useEvents = true;
+                interactable.gameObject.AddComponent<InteractionEvent>();
+            }
+        }
+        if (interactable.useEvents)
         {
             if (interactable.GetComponent<InteractionEvent>() == null)
             {
