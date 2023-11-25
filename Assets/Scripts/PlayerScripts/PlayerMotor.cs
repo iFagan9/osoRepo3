@@ -26,6 +26,7 @@ public class PlayerMotor : MonoBehaviour
     {
         isGrounded = controller.isGrounded;
     }
+
     public void ProcessMove(Vector2 input)
     {
         Vector3 moveDirection = Vector3.zero;
