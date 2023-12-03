@@ -10,7 +10,7 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void EnterState(EnemyAI enemy)
     {
-        Debug.Log("Entered Attack State");
+        //Debug.Log("Entered Attack State");
         timer = bufferBeforeFirstAttack;
     }
 
@@ -41,7 +41,7 @@ public class EnemyAttackState : EnemyBaseState
 
     private void attack(EnemyAI enemy, Vector3 playerDir)
     {
-        Debug.Log("Attacked");
+        //Debug.Log("Attacked");
         RaycastHit hitinfo;
         if (Physics.Raycast(enemy.transform.position, playerDir, out hitinfo))
         {
@@ -49,7 +49,7 @@ public class EnemyAttackState : EnemyBaseState
             {
                 enemy.playerHealth.TakeDamage(enemy.attackDamage);              
             }
-            Debug.Log(hitinfo.collider.gameObject.name);
+            //Debug.Log(hitinfo.collider.gameObject.name);
         }
         timer = timeBetweenAttacks;
     }

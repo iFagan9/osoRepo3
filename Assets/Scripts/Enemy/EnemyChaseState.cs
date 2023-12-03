@@ -7,7 +7,7 @@ public class EnemyChaseState : EnemyBaseState
 
     public override void EnterState(EnemyAI enemy)
     {
-        Debug.Log("Entered Chase State");
+        //Debug.Log("Entered Chase State");
     }
 
     public override void UpdateState(EnemyAI enemy)

@@ -18,7 +18,7 @@ public class EnemyRoamState : EnemyBaseState
 
     public override void EnterState(EnemyAI enemy)
     {
-        Debug.Log("Entered Roam State");
+        //Debug.Log("Entered Roam State");
         currentState = ROAMSTATE.WAIT;
         waitTimer = waitMaxTime;
     }

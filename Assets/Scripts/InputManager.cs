@@ -10,6 +10,7 @@ public class InputManager : MonoBehaviour
   //  private InputActionMap onFoot;
     private PlayerInputCon.OnFootActions onFoot;  // Using the OnFootActions struct instead of InputActionMap
     private PlayerMotor motor;
+    private PlayerAttack attack;
    
     public PlayerInputCon.OnFootActions OnFoot => onFoot;
     //seperate accessor thing for syntax 
@@ -21,10 +22,14 @@ public class InputManager : MonoBehaviour
         onFoot = playerInput.onFoot;
         motor = GetComponent<PlayerMotor>();
         look = GetComponent<PlayerLook>();
+        attack = GetComponent<PlayerAttack>();
+        
         //danger
         onFoot.Jump.performed += ctx => motor.Jump();
 
         onFoot.Sprint.performed += ctx => motor.Sprint();
+
+        onFoot.Fire.performed += ctx => attack.ProcessShot();
         // points to jump anytime onfoot jump is called we use a callback to get the motorJump();
         //theres performed, started, or canceled with the call back context (ctx)
 

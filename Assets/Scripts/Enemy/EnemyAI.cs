@@ -11,6 +11,9 @@ public class EnemyAI : MonoBehaviour
 
     public Rigidbody rb;
 
+    public float health;
+    public float maxHealth;
+
     public float detectionRadius;
     public float attackRadius;
     public float repelRadius;
@@ -36,6 +39,7 @@ public class EnemyAI : MonoBehaviour
         }
 
         currentState.EnterState(this);
+        health = maxHealth;
     }
 
     // Update is called once per frame
@@ -63,5 +67,10 @@ public class EnemyAI : MonoBehaviour
         Gizmos.DrawRay(transform.position, pDir * 3);
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, repelRadius);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
     }
 }

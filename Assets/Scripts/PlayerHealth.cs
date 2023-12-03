@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
     private float lerpTimer;
     public float maxHealth = 100;
     public float chipSpeed = 2;
+    public GameObject respawnPoint;
 
     //UI pieces
 
@@ -36,6 +37,11 @@ public class PlayerHealth : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             RestoreHealth(UnityEngine.Random.Range(5, 10));
+        }
+
+        if (health <= 0)
+        {
+            Respawn(respawnPoint.transform.position);
         }
     }
 
@@ -82,5 +88,11 @@ public class PlayerHealth : MonoBehaviour
         health += healAmount;
         lerpTimer = 0f;
 
+    }
+
+    public void Respawn(Vector3 respawnPoint)
+    {
+        this.transform.position = respawnPoint;
+        RestoreHealth(maxHealth);
     }
 }
