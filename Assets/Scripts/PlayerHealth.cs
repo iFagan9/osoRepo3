@@ -18,6 +18,8 @@ public class PlayerHealth : MonoBehaviour
 
     public Image frontHealthBar;
     public Image backHealthBar;
+
+    public GameObject deathScreen;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +43,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            Respawn(respawnPoint.transform.position);
+            Die();
         }
     }
 
@@ -88,6 +90,14 @@ public class PlayerHealth : MonoBehaviour
         health += healAmount;
         lerpTimer = 0f;
 
+    }
+
+    public void Die()
+    {
+        deathScreen.SetActive(true);
+        deathScreen.GetComponent<DeathScreen>().setPlayerHealth(this);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void Respawn(Vector3 respawnPoint)
