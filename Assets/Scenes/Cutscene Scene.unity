@@ -489,6 +489,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1046860628}
   - component: {fileID: 1046860627}
+  - component: {fileID: 1046860629}
   m_Layer: 0
   m_Name: VideoPlayer
   m_TagString: Untagged
@@ -547,6 +548,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1046860629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046860626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 262a6dce03d4d8a4287edf59f2994eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  videoPlayer: {fileID: 1046860627}
 --- !u!1 &1639985573
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,7 +573,7 @@ GameObject:
   - component: {fileID: 1639985576}
   - component: {fileID: 1639985575}
   m_Layer: 5
-  m_Name: RawImage
+  m_Name: Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

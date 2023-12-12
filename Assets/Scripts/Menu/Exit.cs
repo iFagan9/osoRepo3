@@ -1,5 +1,5 @@
 using UnityEngine;
-using static System.Net.Mime.MediaTypeNames;
+//using static System.Net.Mime.MediaTypeNames;
 
 public class ExitGame : MonoBehaviour
 {
