@@ -10,6 +10,7 @@ public class DeathScreen : MonoBehaviour
 
     public void Respawn()
     {
+        Time.timeScale = 1;
         PH.Respawn(PH.respawnPoint.transform.position);
         this.gameObject.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
@@ -18,6 +19,7 @@ public class DeathScreen : MonoBehaviour
 
     public void Restart()
     {
+        Time.timeScale = 1;
         int currentSceneID = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneID);
         this.gameObject.SetActive(false);
@@ -25,6 +27,7 @@ public class DeathScreen : MonoBehaviour
 
     public void MainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(menuIndex);
     }
 

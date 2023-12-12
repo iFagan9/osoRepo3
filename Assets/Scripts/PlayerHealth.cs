@@ -98,6 +98,7 @@ public class PlayerHealth : MonoBehaviour
         deathScreen.GetComponent<DeathScreen>().setPlayerHealth(this);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        Time.timeScale = 0;
     }
 
     public void Respawn(Vector3 respawnPoint)

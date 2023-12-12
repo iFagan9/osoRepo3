@@ -86,7 +86,7 @@ public partial class @PlayerInputCon: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2654c08c-f02f-4a60-8d8a-80e988f33168"",
-                    ""path"": ""<Keyboard>/#(F)"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
@@ -638,7 +638,7 @@ public partial class @PlayerInputCon: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse;Keyboard"",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Point"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -671,7 +671,7 @@ public partial class @PlayerInputCon: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse;Keyboard"",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

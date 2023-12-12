@@ -10,9 +10,12 @@ public class EnemyAI : MonoBehaviour
     public EnemyAttackState attackState = new EnemyAttackState();
 
     public Rigidbody rb;
+    private Renderer enemyRenderer;
 
     public float health;
     public float maxHealth;
+    public float knockBackStrength;
+    public Color hitColor;
 
     public float detectionRadius;
     public float attackRadius;
@@ -29,6 +32,8 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
+        enemyRenderer = GetComponentInChildren<MeshRenderer>();
         playerObject = FindFirstObjectByType<PlayerLook>().gameObject;
         playerHealth = playerObject.GetComponent<PlayerHealth>();
         currentState = roamState;
@@ -48,6 +53,10 @@ public class EnemyAI : MonoBehaviour
         
         currentState.UpdateState(this);
         
+        if (health <= 0)
+        {
+            Die();
+        }
 
     }
 
@@ -72,5 +81,22 @@ public class EnemyAI : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
+        rb.AddForce(-transform.forward * knockBackStrength, ForceMode.Impulse);
+        StartCoroutine(flashColor());
+    }
+
+    private void Die()
+    {
+        SwitchState(roamState);
+        Destroy(gameObject);
+    }
+
+    IEnumerator flashColor()
+    {
+        Color prevColor;
+        prevColor = enemyRenderer.material.color;
+        enemyRenderer.material.color = hitColor;
+        yield return new WaitForSeconds(.5f);
+        enemyRenderer.material.color = prevColor;
     }
 }
