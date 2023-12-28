@@ -10,13 +10,17 @@ public class PlayerAttack : MonoBehaviour
     private Vector3 lookDir;
 
     public float shotDamage;
-    private AudioSource audioSource;
+    private AudioSource[] gunSources;
+   
+
+    private int gunSound = 0;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        gunSources = GetComponents<AudioSource>();
+      
     }
 
     // Update is called once per frame
@@ -30,7 +34,18 @@ public class PlayerAttack : MonoBehaviour
     {
         //Debug.Log("Shot");
         RaycastHit hitInfo;
-        audioSource.Play();
+        if (gunSound == 0)
+        {
+            gunSources[0].Play();
+            gunSound = 1;
+        }
+
+        if (gunSound == 1)
+        {
+            gunSources[1].Play();
+            gunSound = 0;
+        }
+      
         if (Physics.Raycast(firePoint, lookDir, out hitInfo))
         {
             //Debug.Log("Hit Something: " + hitInfo.collider.name);
