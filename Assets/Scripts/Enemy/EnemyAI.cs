@@ -27,6 +27,7 @@ public class EnemyAI : MonoBehaviour
     public float speed;
 
     public bool canShoot;
+    public bool gangster;
     [SerializeField] private GameObject gun;
 
     // Start is called before the first frame update
