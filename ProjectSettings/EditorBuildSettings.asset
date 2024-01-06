@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Forest Level.unity
     guid: ad0aae1f3cd14504abab80793403c100
   - enabled: 0
-    path: Assets/Scenes/Level02.unity
+    path: Assets/Scenes/Factory Level.unity
     guid: 2a077eb37c3c7c34a99a53a6d9878a83
   m_configObjects: {}
