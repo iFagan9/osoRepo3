@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+//using System.Diagnostics;
 using UnityEngine;
 
 public class DoorOpener : MonoBehaviour
@@ -7,28 +8,28 @@ public class DoorOpener : MonoBehaviour
     // Rotation speed in degrees per second
     public float rotationSpeed = 30f;
     public bool opened = false;
+    [SerializeField] public float specialR =180;
     [SerializeField] public bool canClose;
+    private AudioSource sound;
+
 
     // Start is called before the first frame update
     void Start()
     {
+         
+   sound= GetComponent<AudioSource>();
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+}
 
     // Method to open the door slowly
     public void OpenDoorR()
     {
         if (opened == false)
         {
+            if (sound != null)
+                sound.Play();
 
-
-            StartCoroutine(RotateDoorR(250));
+            StartCoroutine(RotateDoorR(specialR));
             opened = true;
         }
     }
@@ -36,8 +37,29 @@ public class DoorOpener : MonoBehaviour
     {
         if (opened == false)
         {
-            StartCoroutine(RotateDoorL(360));
+           if(sound!=null)
+                sound.Play();
+            StartCoroutine(RotateDoorL(specialR));
             opened = true;
+        }
+    }
+   
+    public void CloseL()
+    {
+        if (opened && canClose)
+        {
+            if (sound != null)
+                sound.Play();
+            StartCoroutine(RotateDoorL(0));
+        }
+    }
+    public void CloseR()
+    {
+        if (opened && canClose)
+        {
+            if (sound != null)
+                sound.Play();
+            StartCoroutine(RotateDoorR(0));
         }
     }
     IEnumerator RotateDoorR(float targetRotation)
@@ -46,8 +68,8 @@ public class DoorOpener : MonoBehaviour
         float currentRotation = transform.rotation.eulerAngles.y;
 
         // Rotate gradually until reaching the target rotation
-        
-        while (Mathf.Abs(targetRotation - currentRotation) > 0.01f)
+
+        while (Mathf.Abs(targetRotation - currentRotation) > 0.6f)
         {
             // Calculate the rotation step
             float rotationStep = rotationSpeed * Time.deltaTime;
@@ -60,27 +82,33 @@ public class DoorOpener : MonoBehaviour
 
             yield return null;
         }
-     
-    }
 
+    }
     IEnumerator RotateDoorL(float targetRotation)
     {
         // Get the current rotation
         float currentRotation = transform.rotation.eulerAngles.y;
 
-       
-            while (Mathf.Abs(targetRotation - currentRotation) > 0.01f)
-            {
-                // Calculate the rotation step
-                float rotationStep = rotationSpeed * Time.deltaTime;
+        // Determine the direction of rotation
+        float rotationDirection = -Mathf.Sign(targetRotation - currentRotation);
 
-                // Rotate towards the target rotation
-                transform.Rotate(Vector3.up, -Mathf.Sign(targetRotation - currentRotation) * rotationStep);
+        // Rotate gradually until reaching the target rotation
+        while (Mathf.Abs(targetRotation - currentRotation) > 0.6f)
+        {
+            // Calculate the rotation step
+            float rotationStep = rotationSpeed * Time.deltaTime;
 
-                // Update the current rotation
-                currentRotation = transform.rotation.eulerAngles.y;
+            // Rotate towards the target rotation
+            transform.Rotate(Vector3.up, rotationDirection * rotationStep);
 
-                yield return null;
-            }
+            // Update the current rotation
+            currentRotation = transform.rotation.eulerAngles.y;
+
+            // Debug logs
+          //  Debug.Log("Current Rotation: " + currentRotation + " | Target Rotation: " + targetRotation);
+
+            yield return null;
+        }
     }
+
 }
